@@ -1,8 +1,9 @@
-package com.mortgage;
+package com.product;
 
 import java.util.Scanner;
 
 public class Console {
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static double readNumber(String prompt){
@@ -20,4 +21,5 @@ public class Console {
         }
         return value;
     }
+
 }

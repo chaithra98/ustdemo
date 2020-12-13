@@ -27,6 +27,10 @@ var tv = {
 }
 
 
+{name: "Chaithra", hobbies: [{title: "bikes", freequency:3},{title: "Yoga", freequency:7}], phone: 7262516362},
+{name: "Rachana", hobbies: [{title: "Sports", freequency:4},{title: "Car", freequency:5}], phone: 5847695842}
+
+
 
 
 

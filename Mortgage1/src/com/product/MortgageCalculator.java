@@ -1,20 +1,23 @@
-package com.mortgage;
+package com.product;
 
 public class MortgageCalculator {
+
     private final static byte MONTHS_IN_YEAR = 12;
     private final static byte PERCENT = 100;
 
     private int principal;
     private float annualInterest;
     private byte years;
+    private byte months;
 
-    public MortgageCalculator(int principal, float annualInterest, byte years) {
+    public MortgageCalculator(int principal, float annualInterest, byte years, byte months) {
         this.principal = principal;
         this.annualInterest = annualInterest;
         this.years = years;
+        this.months = months;
     }
 
-    public double calculateBalance( short numberOfPaymentsMade ) {
+    public double calculateBalance(short numberOfPaymentsMade) {
         float monthlyInterest = getMonthlyInterest();
         float numberOfPayments = getNumberOfPayments();
 
@@ -35,16 +38,16 @@ public class MortgageCalculator {
         return mortgage;
     }
 
-    public double[] getRemainingBalance(){
+    public double[] getRemainingBalance() {
         var balances = new double[getNumberOfPayments()];
-        for ( short month = 1; month <= balances.length; month++){
-            balances[month-1] = calculateBalance(month);
+        for (short month = 1; month <= balances.length; month++) {
+            balances[month - 1] = calculateBalance(month);
         }
         return balances;
     }
 
     private int getNumberOfPayments() {
-        return years * MONTHS_IN_YEAR;
+        return (years * MONTHS_IN_YEAR) + months;
     }
 
     private float getMonthlyInterest() {
