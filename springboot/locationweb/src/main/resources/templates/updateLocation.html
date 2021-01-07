@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Location</title>
+</head>
+<body>
+
+<pre>
+		<form action="/updateLoc" method="POST">
+			Id:<input type="text" name="id" value = "${location.id}" readonly />
+			<br>
+			Code:<input type="text" name="code" value = "${location.code}" />
+			<br>
+			Name:<input type="text" name="name" value = "${location.name}" />
+			<br>
+			Type: Urban: <input type="radio" name="type" value="URBAN" ${location.type=='URBAN' ? 'checked' : '' }/>
+				  Rural:<input type="radio" name="type" value="RURAL" ${location.type=='RURAL' ? 'checked' : '' }/>
+				  <input type="submit" value="save"/>
+		</form>
+	</pre>
+
+</body>
+</html>
