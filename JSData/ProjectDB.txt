@@ -1,0 +1,24 @@
+create database projectdb;
+
+use projectdb;
+
+create table studenttab(
+	id int primary key AUTO_INCREMENT,
+	sname varchar(20),
+	scourse varchar(30),
+	sfee int
+);
+
+select * from studenttab;
+
+
+create database projectdb1;
+
+use projectdb1;
+
+create table customerdet(
+	id int primary key AUTO_INCREMENT,
+	cname varchar(20),
+	cemail varchar(30),
+	clocation varchar(25)
+);
