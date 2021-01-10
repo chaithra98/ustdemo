@@ -1,0 +1,171 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Train Reservation
+  description:
+    This specification is for online train reservation. Here you can find
+    information about trains.
+  contact:
+    name: Chaithra
+    url: 'https://www.trainshub.com'
+    email: admin@trains-hub.com
+  license:
+    name: GNU
+    url: 'https://www.trainshub.com'
+host: api.trainshub.org
+basePath: /v1/
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Trains
+    description: Refer to trains that are available
+externalDocs:
+  description: This is an external doc
+  url: 'https://www.developer.trains-hub.com/docs'
+paths:
+  /trains:
+    get:
+      summary: This gets a list of trains
+      description: In this page you can find list of all trains
+      tags:
+        - trains
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Trains'
+        '400':
+          description: When a train is not available
+          schema:
+            $ref: '#/definitions/NotFoundError'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/GeneralError'
+    post:
+      summary: Add a new train details to the list
+      description: Adding new train information
+      tags:
+        - trains
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Trains'
+        '405':
+          description: Invalid Input
+          schema:
+            $ref: '#/definitions/Trains'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/GeneralError'
+  '/trains/{id}':
+    get:
+      summary: This gets the details of trains by id
+      description: In this page you can get train details
+      tags:
+        - trains
+      parameters:
+        - name: id
+          in: path
+          description: ID of Train
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Trains'
+        '400':
+          description: When a rain is not found
+          schema:
+            $ref: '#/definitions/NotFoundError'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/GeneralError'
+    put:
+      summary: This updates the details of existing Train corresponding to the id
+      description: In this page you can update Train details
+      tags:
+        - trains
+      parameters:
+        - name: id
+          in: path
+          description: ID of Train
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Trains'
+        '405':
+          description: Invalid Input
+          schema:
+            $ref: '#/definitions/Trains'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/GeneralError'
+    delete:
+      summary: This deletes the details of existing movie corresponding to the id
+      description: In this page you can delete train details
+      tags:
+        - trains
+      parameters:
+        - name: id
+          in: path
+          description: ID of Train
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Trains'
+        '400':
+          description: When a movie is not found
+          schema:
+            $ref: '#/definitions/NotFoundError'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/GeneralError'
+definitions:
+  GeneralError:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  NotFoundError:
+    required:
+      - message
+      - hint
+    properties:
+      message:
+        type: string
+      hint:
+        type: string
+  Trains:
+    required:
+      - name
+      - arrival
+      - departure
+    properties:
+      name:
+        type: string
+      arrival:
+        type: string
+      departure:
+        type: string
